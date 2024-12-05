@@ -1,6 +1,6 @@
 export interface JWTPayload {
   id: string;
-  email: string;
+  email: string | undefined;
 };
 
 export interface UserAttributes {
@@ -21,6 +21,6 @@ export interface ProductAttributes {
   name: string;
   description: string;
   price: number;
-  image: string[];
+  images: string[];
   stock: number;
 }

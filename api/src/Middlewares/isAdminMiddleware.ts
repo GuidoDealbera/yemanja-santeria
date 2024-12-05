@@ -8,23 +8,25 @@ const isAdmin = async (req: Request, res: Response, next: NextFunction) => {
     const authorization = req.headers.authorization;
     const token = authorization?.split(" ")[1];
     if (!token) {
-      return res.status(401).json("Invalid token");
+      res.status(401).json("Invalid token");
+      return;
     }
     const decode: any = verifyToken(token);
     const { id } = decode;
     const user: any = await User.findByPk(id);
     if (!user) {
-      return res.status(404).json("User not found!");
+      res.status(404).json("User not found!");
+      return;
     }
     req.user = user;
     if (user.isAdmin) {
       next();
     } else {
-      return res
-        .status(401)
-        .json("Access denied. Requires administrator permissions");
+      res.status(401).json("Access denied. Requires administrator permissions");
+      return;
     }
   } catch (error) {
+    console.error(error);
     res.status(401).json(error);
   }
 };

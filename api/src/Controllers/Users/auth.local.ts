@@ -11,13 +11,19 @@ const authLogin = async (req: Request, res: Response) => {
     };
     const accessToken = generateToken(payload);
     const response = {
-      message: "Bienvenido a E-Commerce!",
-      credentials: {
-        accessToken,
-        id: user?.id,
-        email: user?.email,
+      message: "Bienvenido a Santería y Herboristería Yemanja",
+      accessToken,
+      user: {
+        id: user.id,
+        googleId: user.googleId,
+        isAdmin: user.isAdmin,
+        isActive: user.isActive,
+        name: user.name,
+        email: user.email,
+        profilePhoto: user.profilePhoto,
+        phone: user.phone,
+        address: user.address,
       },
-      profile: user,
     };
     res.status(200).json(response);
   } catch (error: any) {

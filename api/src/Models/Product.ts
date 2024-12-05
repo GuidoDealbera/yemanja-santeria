@@ -7,7 +7,7 @@ export default (sequelize: Sequelize) => {
     public name!: string;
     public description!: string;
     public price!: number;
-    public image!: string[];
+    public images!: string[];
     public stock!: number;
   }
 
@@ -21,16 +21,27 @@ export default (sequelize: Sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate:{
+          min: 5,
+          max: 50
+        }
       },
       description: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          min: 10,
+          max: 1000
+        }
       },
       price: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
+        validate: {
+          min: 0.01
+        }
       },
-      image: {
+      images: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
       },

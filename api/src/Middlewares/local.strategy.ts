@@ -7,7 +7,7 @@ const localStrategy = (req: Request, res: Response, next: NextFunction) => {
       return next(err); // Si hay un error, pasa el error a la función next
     }
     if (!user) {
-      return res.status(401).json({ error: info.message });
+      return res.status(404).json({ error: info.message });
     }
     req.user = user;
     next(); // Continúa con el siguiente middleware o controlador

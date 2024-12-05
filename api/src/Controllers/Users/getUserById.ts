@@ -10,6 +10,7 @@ const getUserById = async (req: Request, res: Response) => {
       include: {
         model: Product,
       },
+      attributes: { exclude: ["password"] },
     });
     if (!findUser) {
       res.status(404).json({ error: "Usuario no encontrado" });

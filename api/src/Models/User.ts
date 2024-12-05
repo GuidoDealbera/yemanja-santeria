@@ -35,18 +35,20 @@ export default (sequelize: Sequelize) => {
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       phone: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       address: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       profilePhoto: {
         type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+        validate: {
+          isUrl: true,
+        }
       },
       isAdmin: {
         type: DataTypes.BOOLEAN,

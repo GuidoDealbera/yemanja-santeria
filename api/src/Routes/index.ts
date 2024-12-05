@@ -9,7 +9,7 @@ const cleanFileName = (filename: string) => {
 
 readdirSync(PATH_ROUTER).filter((filename) => {
   const cleanFile = cleanFileName(filename);
-  if (cleanFile !== "index" && filename.endsWith(".ts")) {
+  if (cleanFile !== "index" && cleanFile !== "auth" && filename.endsWith(".ts")) {
     import(`./${cleanFile}`)
       .then((moduleRoute) => {
         router.use(`/${cleanFile}`, moduleRoute.router);
